@@ -6,7 +6,7 @@
 use IO::Handle;
 use YAML;
 
-my $REPO = 'http://svn.ecclestoad.co.uk/svn/class-dbi-dfv/';
+my $REPO = 'http://svn.ecclestoad.co.uk/svn';
 my $SVN  = -d '.svn' ? 'svn' : 'svk';
 
 print "\n";
@@ -57,8 +57,8 @@ sub cpan_upload {
 }
 
 sub make_tag {
-    my $trunk = "$REPO/trunk/$name";
-    my $tag   = "$REPO/tags/$name";
+    my $trunk = "$REPO/" . lc $name . "/trunk";
+    my $tag   = "$REPO/" . lc $name . "/tags";
 
     print
 qq(\nDo you wish to create a tag with "svn copy $trunk $tag/$version"? (y/n) );
@@ -68,7 +68,7 @@ qq(\nDo you wish to create a tag with "svn copy $trunk $tag/$version"? (y/n) );
         STDOUT->flush;
         if ( system "svn list $tag >/dev/null 2>&1" ) {
             print "not found, creating.\n";
-            do_cmd("svn -p mkdir $tag -m '- created tag directory for $name'");
+            do_cmd("svn mkdir $tag -m '- created tag directory for $name'");
         }
         else {
             print "found.\n";

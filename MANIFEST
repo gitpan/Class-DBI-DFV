@@ -1,5 +1,4 @@
 Build.PL
-Class-DBI-DFV-0.01.tar.gz
 file-header.txt
 lib/Class/DBI/DFV.pm
 Makefile.PL
@@ -8,4 +7,3 @@ META.yml
 release.pl
 t/cdbi.t
 t/Local/Test.pm
-t/test-database.sqlite
